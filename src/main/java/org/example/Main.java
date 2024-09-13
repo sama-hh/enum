@@ -1,19 +1,16 @@
 package org.example;
 
-//Step 1: Create an enum DaysOfWeek with the weekdays (Monday to Sunday).
-//Step 2: Write a method that returns the passed weekday as a string if it is a weekday (Monday to Friday), otherwise return 'Weekend'.
-//Step 3: Create a record 'Person' with the properties 'id', 'name', and 'favoriteDay', where 'favoriteDay' is of type DaysOfWeek.
-//Step 4: Create a class PersonRepository with a list/map of persons.
-//Step 5: Write a method in the class PersonRepository that searches for and returns a person based on their id from the list/map.
-// The method should return an Optional.
-//Step 6: In your main method, check if the person exists. If they do, print the name and favorite day of the week to the console.
+//Expand the Person record with an enum Gender (Male, Female, Diverse).
+//Write a method in the PersonRepository that counts the number of persons by gender and outputs the results.
+//Add a method in the PersonRepository that searches and returns a person by their name. The method should return an Optional.
+//Write a method in the PersonRepository that searches and returns all persons by their favorite weekday. The method should return a list.
 
 public class Main {
     public static void main(String[] args) {
 
-        Person person1 = new Person(1,"Oliver", Week.FRIDAY);
-        Person person2 = new Person(2,"Bob", Week.MONDAY);
-        Person person3 = new Person(3,"Jack", Week.WEDNESDAY);
+        Person person1 = new Person(1,"Oliver", Week.FRIDAY, Gender.MALE);
+        Person person2 = new Person(2,"Jane", Week.MONDAY, Gender.FEMALE);
+        Person person3 = new Person(3,"Jack", Week.WEDNESDAY, Gender.MALE);
 
         PersonRepository personRepository = new PersonRepository();
         personRepository.add(person1);
@@ -27,6 +24,11 @@ public class Main {
         else {
             System.out.println("There is no person with id " + personId);
         }
+
+        //
+
+        personRepository.getPersonsByGender(Gender.FEMALE);
+        personRepository.getPersonsByGender(Gender.MALE);
 
     }
 

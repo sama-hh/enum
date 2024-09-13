@@ -10,12 +10,15 @@ public class Main {
 
         Person person1 = new Person(1,"Oliver", Week.FRIDAY, Gender.MALE);
         Person person2 = new Person(2,"Jane", Week.MONDAY, Gender.FEMALE);
-        Person person3 = new Person(3,"Jack", Week.WEDNESDAY, Gender.MALE);
+        Person person3 = new Person(3,"Jack", Week.MONDAY, Gender.MALE);
 
         PersonRepository personRepository = new PersonRepository();
         personRepository.add(person1);
         personRepository.add(person2);
         personRepository.add(person3);
+
+        System.out.println("Monday is: " + getWeekDay(Week.MONDAY));
+        System.out.println("Sunday is: " + getWeekDay(Week.SUNDAY));
 
         int personId = 5;
         if (personRepository.findById(personId).isPresent()){
@@ -25,11 +28,15 @@ public class Main {
             System.out.println("There is no person with id " + personId);
         }
 
-        //
-
         personRepository.getPersonsByGender(Gender.FEMALE);
         personRepository.getPersonsByGender(Gender.MALE);
 
+        System.out.println(personRepository.findByName("Jane"));
+
+        System.out.println("Persons with the favorite day Monday:");
+        for (Person person: personRepository.findPersonsByWeekday(Week.MONDAY)){
+            System.out.println(person);
+        }
     }
 
     public static String getWeekDay(Week day) {

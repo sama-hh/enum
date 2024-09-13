@@ -1,9 +1,6 @@
 package org.example;
 
-import java.sql.SQLOutput;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class PersonRepository {
 
@@ -25,5 +22,24 @@ public class PersonRepository {
             }
         }
         System.out.println(gender + " count: " + count);
+    }
+
+    public Optional<Person> findByName(String name) {
+        for (Person person : persons.values()) {
+            if (person.name().equals(name)) {
+                return Optional.of(person);
+            }
+        }
+        return Optional.empty();
+    }
+
+    public List<Person> findPersonsByWeekday(Week weekday) {
+        List<Person> personsList = new ArrayList<>();
+        for (Person person : persons.values()) {
+            if (person.favoriteDay() == weekday) {
+                personsList.add(person);
+            }
+        }
+        return personsList;
     }
 }
